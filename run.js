@@ -29,7 +29,7 @@ http.createServer(function (req, res) {
 
 			// find food on map
 			// TODO: implement it
-			const foodCoords = []
+			let foodCoords = []
 			let hiveCoords
 			for (let y = 0; y <= cells.length - 1; y++) {
 				for (let x = 0; x <= cells[y].length - 1; x++) {
@@ -37,6 +37,8 @@ http.createServer(function (req, res) {
 					if (cells[y][x].hive) hiveCoords = [x, y]
 				}
 			}
+
+			foodCoords = foodCoords.sort()
 
 			for (let ant in ants) {
 				let action, direction
@@ -71,12 +73,30 @@ http.createServer(function (req, res) {
 							direction = 'up'
 							return
 						}
-						if (antX === hiveCoords[1]) {
+					}
+					if (ants[ant].payload > 0) {
+						if (antX + 1 === hiveCoords[0]  && antY === hiveCoords[1]) {
+							action = 'upload'
+							direction = 'right'
+							return
+						}
+						if (antX - 1 === hiveCoords[0]  && antY === hiveCoords[1]) {
+							action = 'upload'
+							direction = 'left'
+							return
+						}
+						if (antY + 1 === hiveCoords[1]  && antX === hiveCoords[0]) {
+							action = 'upload'
+							direction = 'down'
+							return
+						}
+						if (antY - 1 === hiveCoords[1]  && antX === hiveCoords[0]) {
 							action = 'upload'
 							direction = 'up'
 							return
 						}
 					}
+					
 					if (!foodCoords.length) {
 						action = 'stay'
 						direction = 'right'
