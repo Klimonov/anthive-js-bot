@@ -107,6 +107,7 @@ http.createServer(function (req, res) {
 					"act": action,
 					"dir": direction
 				}
+				console.log(order, 'order')
 				response.orders.push(order)
 			}
 			res.end(JSON.stringify(response));
