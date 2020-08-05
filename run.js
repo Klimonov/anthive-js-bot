@@ -53,12 +53,12 @@ http.createServer(function (req, res) {
 						return
 					}
 					if (isAntFull) {
-						if (antX + 1 < hiveCoords[0]) {
+						if (antX + 1 < hiveCoords[0] || (antX + 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1])) {
 							action = 'move'
 							direction = 'right'
 							return
 						}
-						if (antX - 1 > hiveCoords[0]) {
+						if (antX - 1 > hiveCoords[0] || (antX - 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1])) {
 							action = 'move'
 							direction = 'left'
 							return
@@ -129,7 +129,7 @@ http.createServer(function (req, res) {
 								direction = 'right'
 								return
 							}
-							if (antX> foodCoords[coords][0]) {
+							if (antX > foodCoords[coords][0]) {
 								action = 'move'
 								direction = 'left'
 								return
