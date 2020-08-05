@@ -77,6 +77,11 @@ http.createServer(function (req, res) {
 							return
 						}
 					}
+					if (!foodCoords.length) {
+						action = 'stay'
+						direction = 'right'
+						return
+					}
 					if (!isAntFull) {
 						for (let coords in foodCoords) {
 							if (antX + 1 === foodCoords[coords][0] && antY === foodCoords[coords][1]) {
