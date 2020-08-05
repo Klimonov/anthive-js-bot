@@ -53,22 +53,22 @@ http.createServer(function (req, res) {
 						return
 					}
 					if (isAntFull) {
-						if (antX < hiveCoords[0]) {
+						if (antX + 1 < hiveCoords[0]) {
 							action = 'move'
 							direction = 'right'
 							return
 						}
-						if (antX > hiveCoords[0]) {
+						if (antX - 1 > hiveCoords[0]) {
 							action = 'move'
 							direction = 'left'
 							return
 						}
-						if (antY < hiveCoords[1]) {
+						if (antY + 1 < hiveCoords[1]) {
 							action = 'move'
 							direction = 'down'
 							return
 						}
-						if (antY > hiveCoords[1]) {
+						if (antY - 1 > hiveCoords[1]) {
 							action = 'move'
 							direction = 'up'
 							return
