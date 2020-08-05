@@ -104,22 +104,22 @@ http.createServer(function (req, res) {
 								direction = 'up'
 								return
 							}
-							if (antX < foodCoords[coords][0]) {
+							if (antX + 1 < foodCoords[coords][0]) {
 								action = 'move'
 								direction = 'right'
 								return
 							}
-							if (antX > foodCoords[coords][0]) {
+							if (antX - 1 > foodCoords[coords][0]) {
 								action = 'move'
 								direction = 'left'
 								return
 							}
-							if (antY < foodCoords[coords][1]) {
+							if (antY + 1 < foodCoords[coords][1]) {
 								action = 'move'
 								direction = 'down'
 								return
 							}
-							if (antY > foodCoords[coords][1]) {
+							if (antY - 1 > foodCoords[coords][1]) {
 								action = 'move'
 								direction = 'up'
 								return
