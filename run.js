@@ -84,19 +84,19 @@ http.createServer(function (req, res) {
 							direction = 'up'
 						}
 						if (antX + 1 === foodCoords[coords][0]) {
-							action = 'eat'
+							action = 'load'
 							direction = 'right'
 						}
 						if (antX - 1 === foodCoords[coords][0]) {
-							action = 'eat'
+							action = 'load'
 							direction = 'left'
 						}
 						if (antY + 1 === foodCoords[coords][1]) {
-							action = 'eat'
+							action = 'load'
 							direction = 'down'
 						}
 						if (antY + 1 === foodCoords[coords][1]) {
-							action = 'eat'
+							action = 'load'
 							direction = 'up'
 						}
 					}
