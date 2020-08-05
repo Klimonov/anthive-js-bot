@@ -46,43 +46,43 @@ http.createServer(function (req, res) {
 				if (ant.health === 1 && ant.payload > 0) {
 					action = 'eat'
 					direction = 'right'
-				} else if (isAntFull && antX < hiveCoords[0]) {
+				} if (isAntFull && antX < hiveCoords[0]) {
 					action = 'move'
 					direction = 'right'
-				} else if (isAntFull && antX > hiveCoords[0]) {
+				} if (isAntFull && antX > hiveCoords[0]) {
 					action = 'move'
 					direction = 'left'
-				} else if (isAntFull && antY < hiveCoords[1]) {
+				} if (isAntFull && antY < hiveCoords[1]) {
 					action = 'move'
 					direction = 'down'
-				} else if (isAntFull && antY > hiveCoords[1]) {
+				} if (isAntFull && antY > hiveCoords[1]) {
 					action = 'move'
 					direction = 'up'
-				} else if (isAntFull && antX === hiveCoords[1]) {
+				} if (isAntFull && antX === hiveCoords[1]) {
 					action = 'upload'
 					direction = 'up'
-				} else if (!isAntFull && cells[antX + 1][antY].food > 0) {
+				} if (!isAntFull && cells[antX + 1][antY].food > 0) {
 					action = 'load'
 					direction = 'right'
-				} else if (!isAntFull && cells[antX - 1][antY].food > 0) {
+				} if (!isAntFull && cells[antX - 1][antY].food > 0) {
 					action = 'load'
 					direction = 'left'
-				} else if (!isAntFull && cells[antX][antY + 1].food > 0) {
+				} if (!isAntFull && cells[antX][antY + 1].food > 0) {
 					action = 'load'
 					direction = 'up'
-				} else if (!isAntFull && cells[antX][antY - 1].food > 0) {
+				} if (!isAntFull && cells[antX][antY - 1].food > 0) {
 					action = 'load'
 					direction = 'down'
-				} else if (antX + 1 >= mapWidth) {
+				} if (antX + 1 >= mapWidth) {
 					action = 'move'
 					direction = 'up'
-				} else if (antX - 1 <= 0) {
+				} if (antX - 1 <= 0) {
 					action = 'move'
 					direction = 'down'
-				} else if (antY + 1 >= mapHeight) {
+				} if (antY + 1 >= mapHeight) {
 					action = 'move'
 					direction = 'left'
-				} else if (antY - 1 <= 0) {
+				} if (antY - 1 <= 0) {
 					action = 'move'
 					direction = 'right'
 				}
