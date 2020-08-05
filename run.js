@@ -79,6 +79,26 @@ http.createServer(function (req, res) {
 					}
 					if (!isAntFull) {
 						for (let coords in foodCoords) {
+							if (antX + 1 === foodCoords[coords][0] && antY === foodCoords[coords][1]) {
+								action = 'load'
+								direction = 'right'
+								return
+							}
+							if (antX - 1 === foodCoords[coords][0] && antY === foodCoords[coords][1]) {
+								action = 'load'
+								direction = 'left'
+								return
+							}
+							if (antY + 1 === foodCoords[coords][1] && antX === foodCoords[coords][0]) {
+								action = 'load'
+								direction = 'down'
+								return
+							}
+							if (antY - 1 === foodCoords[coords][1] && antX === foodCoords[coords][0]) {
+								action = 'load'
+								direction = 'up'
+								return
+							}
 							if (antX < foodCoords[coords][0]) {
 								action = 'move'
 								direction = 'right'
@@ -96,26 +116,6 @@ http.createServer(function (req, res) {
 							}
 							if (antY > foodCoords[coords][1]) {
 								action = 'move'
-								direction = 'up'
-								return
-							}
-							if (antX + 1 === foodCoords[coords][0]) {
-								action = 'load'
-								direction = 'right'
-								return
-							}
-							if (antX - 1 === foodCoords[coords][0]) {
-								action = 'load'
-								direction = 'left'
-								return
-							}
-							if (antY + 1 === foodCoords[coords][1]) {
-								action = 'load'
-								direction = 'down'
-								return
-							}
-							if (antY + 1 === foodCoords[coords][1]) {
-								action = 'load'
 								direction = 'up'
 								return
 							}
