@@ -52,56 +52,33 @@ http.createServer(function (req, res) {
 						direction = 'right'
 						return
 					}
-					if (isAntFull) {
-						if (antX + 1 < hiveCoords[0] || (antX + 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1]))) {
-							action = 'move'
-							direction = 'right'
-							return
-						}
-						if (antX - 1 > hiveCoords[0] || (antX - 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1]))) {
-							action = 'move'
-							direction = 'left'
-							return
-						}
-						if (antY + 1 < hiveCoords[1]) {
-							action = 'move'
-							direction = 'down'
-							return
-						}
-						if (antY - 1 > hiveCoords[1]) {
-							action = 'move'
-							direction = 'up'
-							return
-						}
-					}
-					if (ants[ant].payload > 0) {
-						if (antX + 1 === hiveCoords[0]  && antY === hiveCoords[1]) {
-							action = 'upload'
-							direction = 'right'
-							return
-						}
-						if (antX - 1 === hiveCoords[0]  && antY === hiveCoords[1]) {
-							action = 'upload'
-							direction = 'left'
-							return
-						}
-						if (antY + 1 === hiveCoords[1]  && antX === hiveCoords[0]) {
-							action = 'upload'
-							direction = 'down'
-							return
-						}
-						if (antY - 1 === hiveCoords[1]  && antX === hiveCoords[0]) {
-							action = 'upload'
-							direction = 'up'
-							return
-						}
-					}
-					
 					if (!foodCoords.length) {
 						action = 'stay'
 						direction = 'right'
 						return
 					}
+
+					if (antX + 1 === hiveCoords[0] && antY === hiveCoords[1] && ants[ant].payload > 0) {
+						action = 'upload'
+						direction = 'right'
+						return
+					}
+					if (antX - 1 === hiveCoords[0] && antY === hiveCoords[1] && ants[ant].payload > 0) {
+						action = 'upload'
+						direction = 'left'
+						return
+					}
+					if (antY + 1 === hiveCoords[1] && antX === hiveCoords[0] && ants[ant].payload > 0) {
+						action = 'upload'
+						direction = 'down'
+						return
+					}
+					if (antY - 1 === hiveCoords[1] && antX === hiveCoords[0] && ants[ant].payload > 0) {
+						action = 'upload'
+						direction = 'up'
+						return
+					}
+
 					if (!isAntFull) {
 						for (let coords in foodCoords) {
 							if (antX + 1 === foodCoords[coords][0] && antY === foodCoords[coords][1]) {
@@ -146,6 +123,30 @@ http.createServer(function (req, res) {
 							}
 						}
 					}
+					
+					if(isAntFull) {
+						if (antX + 1 < hiveCoords[0] || (antX + 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1]))) {
+							action = 'move'
+							direction = 'right'
+							return
+						}
+						if (antX - 1 > hiveCoords[0] || (antX - 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1]))) {
+							action = 'move'
+							direction = 'left'
+							return
+						}
+						if (antY + 1 < hiveCoords[1]) {
+							action = 'move'
+							direction = 'down'
+							return
+						}
+						if (antY - 1 > hiveCoords[1]) {
+							action = 'move'
+							direction = 'up'
+							return
+						}
+					}
+				
 				}
 				actionAnt()
 
