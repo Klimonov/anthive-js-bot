@@ -31,10 +31,10 @@ http.createServer(function (req, res) {
 			// TODO: implement it
 			const foodCoords = []
 			let hiveCoords
-			for (let x = 0; x <= cells.length - 1; x++) {
-				for (let y = 0; y <= cells[x].length - 1; y++) {
-					if (cells[x][y].food > 0) foodCoords.push([x, y])
-					if (cells[x][y].hive) hiveCoords = [x, y]
+			for (let y = 0; y <= cells.length - 1; y++) {
+				for (let x = 0; x <= cells[y].length - 1; x++) {
+					if (cells[y][x].food > 0) foodCoords.push([x, y])
+					if (cells[y][x].hive) hiveCoords = [x, y]
 				}
 			}
 
