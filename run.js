@@ -53,12 +53,12 @@ http.createServer(function (req, res) {
 						return
 					}
 					if (isAntFull) {
-						if (antX + 1 < hiveCoords[0] || (antX + 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1])) {
+						if (antX + 1 < hiveCoords[0] || (antX + 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1]))) {
 							action = 'move'
 							direction = 'right'
 							return
 						}
-						if (antX - 1 > hiveCoords[0] || (antX - 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1])) {
+						if (antX - 1 > hiveCoords[0] || (antX - 1 === hiveCoords[0] && (antY + 1 === hiveCoords[1] || antY - 1 == hiveCoords[1]))) {
 							action = 'move'
 							direction = 'left'
 							return
