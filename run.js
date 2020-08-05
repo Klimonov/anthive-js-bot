@@ -40,10 +40,10 @@ http.createServer(function (req, res) {
 
 			for (let ant in ants) {
 				let action, direction
-				const antX = ant.point.x
-				const antY = ant.point.y
-				const isAntFull = ant.payload === maxAntPayload
-				if (ant.health === 1 && ant.payload > 0) {
+				const antX = ants[ant].point.x
+				const antY = ants[ant].point.y
+				const isAntFull = ants[ant].payload === maxAntPayload
+				if (ants[ant].health === 1 && ants[ant].payload > 0) {
 					action = 'eat'
 					direction = 'right'
 				} 
@@ -103,7 +103,7 @@ http.createServer(function (req, res) {
 				}
 
 				const order = {
-					"antId": ant.id,
+					"antId": ants[ant].id,
 					"act": action,
 					"dir": direction
 				}
