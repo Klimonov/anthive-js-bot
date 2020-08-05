@@ -46,46 +46,62 @@ http.createServer(function (req, res) {
 				if (ant.health === 1 && ant.payload > 0) {
 					action = 'eat'
 					direction = 'right'
-				} if (isAntFull && antX < hiveCoords[0]) {
-					action = 'move'
-					direction = 'right'
-				} if (isAntFull && antX > hiveCoords[0]) {
-					action = 'move'
-					direction = 'left'
-				} if (isAntFull && antY < hiveCoords[1]) {
-					action = 'move'
-					direction = 'down'
-				} if (isAntFull && antY > hiveCoords[1]) {
-					action = 'move'
-					direction = 'up'
-				} if (isAntFull && antX === hiveCoords[1]) {
-					action = 'upload'
-					direction = 'up'
-				} if (!isAntFull && cells[antX + 1][antY].food > 0) {
-					action = 'load'
-					direction = 'right'
-				} if (!isAntFull && cells[antX - 1][antY].food > 0) {
-					action = 'load'
-					direction = 'left'
-				} if (!isAntFull && cells[antX][antY + 1].food > 0) {
-					action = 'load'
-					direction = 'up'
-				} if (!isAntFull && cells[antX][antY - 1].food > 0) {
-					action = 'load'
-					direction = 'down'
-				} if (antX + 1 >= mapWidth) {
-					action = 'move'
-					direction = 'up'
-				} if (antX - 1 <= 0) {
-					action = 'move'
-					direction = 'down'
-				} if (antY + 1 >= mapHeight) {
-					action = 'move'
-					direction = 'left'
-				} if (antY - 1 <= 0) {
-					action = 'move'
-					direction = 'right'
+				} 
+				if (isAntFull) {
+					if (antX < hiveCoords[0]) {
+						action = 'move'
+						direction = 'right'
+					} if (antX > hiveCoords[0]) {
+						action = 'move'
+						direction = 'left'
+					} if (antY < hiveCoords[1]) {
+						action = 'move'
+						direction = 'down'
+					} if (antY > hiveCoords[1]) {
+						action = 'move'
+						direction = 'up'
+					} if (antX === hiveCoords[1]) {
+						action = 'upload'
+						direction = 'up'
+					}
 				}
+				if (!isAntFull) {
+					for (let coords in foodCoords) {
+						if (antX < coords[0]) {
+							action = 'move'
+							direction = 'right'
+						}
+						if (antX > coords[0]) {
+							action = 'move'
+							direction = 'left'
+						}
+						if (antY < coords[1]) {
+							action = 'move'
+							direction = 'down'
+						}
+						if (antY > coords[1]) {
+							action = 'move'
+							direction = 'up'
+						}
+						if (antX + 1 === coords[0]) {
+							action = 'eat'
+							direction = 'right'
+						}
+						if (antX - 1 === coords[0]) {
+							action = 'eat'
+							direction = 'left'
+						}
+						if (antY + 1 === coords[1]) {
+							action = 'eat'
+							direction = 'down'
+						}
+						if (antY + 1 === coords[1]) {
+							action = 'eat'
+							direction = 'up'
+						}
+					}
+				}
+
 				const order = {
 					"antId": ant.id,
 					"act": action,
