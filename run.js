@@ -43,64 +43,86 @@ http.createServer(function (req, res) {
 				const antX = ants[ant].point.x
 				const antY = ants[ant].point.y
 				const isAntFull = ants[ant].payload === maxAntPayload
-				if (ants[ant].health === 1 && ants[ant].payload > 0) {
-					action = 'eat'
-					direction = 'right'
-				} 
-				if (isAntFull) {
-					if (antX < hiveCoords[0]) {
-						action = 'move'
+
+				const actionAnt = () => {
+					if (ants[ant].health === 1 && ants[ant].payload > 0) {
+						action = 'eat'
 						direction = 'right'
-					} if (antX > hiveCoords[0]) {
-						action = 'move'
-						direction = 'left'
-					} if (antY < hiveCoords[1]) {
-						action = 'move'
-						direction = 'down'
-					} if (antY > hiveCoords[1]) {
-						action = 'move'
-						direction = 'up'
-					} if (antX === hiveCoords[1]) {
-						action = 'upload'
-						direction = 'up'
+						return
 					}
-				}
-				if (!isAntFull) {
-					for (let coords in foodCoords) {
-						if (antX < foodCoords[coords][0]) {
+					if (isAntFull) {
+						if (antX < hiveCoords[0]) {
 							action = 'move'
 							direction = 'right'
+							return
 						}
-						if (antX > foodCoords[coords][0]) {
+						if (antX > hiveCoords[0]) {
 							action = 'move'
 							direction = 'left'
+							return
 						}
-						if (antY < foodCoords[coords][1]) {
+						if (antY < hiveCoords[1]) {
 							action = 'move'
 							direction = 'down'
+							return
 						}
-						if (antY > foodCoords[coords][1]) {
+						if (antY > hiveCoords[1]) {
 							action = 'move'
 							direction = 'up'
+							return
 						}
-						if (antX + 1 === foodCoords[coords][0]) {
-							action = 'load'
-							direction = 'right'
-						}
-						if (antX - 1 === foodCoords[coords][0]) {
-							action = 'load'
-							direction = 'left'
-						}
-						if (antY + 1 === foodCoords[coords][1]) {
-							action = 'load'
-							direction = 'down'
-						}
-						if (antY + 1 === foodCoords[coords][1]) {
-							action = 'load'
+						if (antX === hiveCoords[1]) {
+							action = 'upload'
 							direction = 'up'
+							return
+						}
+					}
+					if (!isAntFull) {
+						for (let coords in foodCoords) {
+							if (antX < foodCoords[coords][0]) {
+								action = 'move'
+								direction = 'right'
+								return
+							}
+							if (antX > foodCoords[coords][0]) {
+								action = 'move'
+								direction = 'left'
+								return
+							}
+							if (antY < foodCoords[coords][1]) {
+								action = 'move'
+								direction = 'down'
+								return
+							}
+							if (antY > foodCoords[coords][1]) {
+								action = 'move'
+								direction = 'up'
+								return
+							}
+							if (antX + 1 === foodCoords[coords][0]) {
+								action = 'load'
+								direction = 'right'
+								return
+							}
+							if (antX - 1 === foodCoords[coords][0]) {
+								action = 'load'
+								direction = 'left'
+								return
+							}
+							if (antY + 1 === foodCoords[coords][1]) {
+								action = 'load'
+								direction = 'down'
+								return
+							}
+							if (antY + 1 === foodCoords[coords][1]) {
+								action = 'load'
+								direction = 'up'
+								return
+							}
 						}
 					}
 				}
+				actionAnt()
 
 				const order = {
 					"antId": ants[ant].id,
